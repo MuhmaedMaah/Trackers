@@ -33,8 +33,7 @@ h1,h2 { text-align:center; color:#2e7d32; }
     align-items: center;
     margin-bottom: 10px;
 }
-.clear-btn-calendar {
-    background:#c62828;
+.clear-btn-calendar, .random-btn-calendar {
     color:white;
     border:none;
     padding:10px 15px;
@@ -42,20 +41,11 @@ h1,h2 { text-align:center; color:#2e7d32; }
     border-radius:8px;
     cursor:pointer;
     transition:0.2s;
+    margin-left: 5px;
 }
+.clear-btn-calendar { background:#c62828; }
 .clear-btn-calendar:hover { opacity:0.8; }
-
-.random-btn-calendar {
-    background:#1976d2;
-    color:white;
-    border:none;
-    padding:10px 15px;
-    font-size:16px;
-    border-radius:8px;
-    cursor:pointer;
-    margin-left:10px;
-    transition:0.2s;
-}
+.random-btn-calendar { background:#1976d2; }
 .random-btn-calendar:hover { opacity:0.8; }
 
 .calendar {
@@ -128,14 +118,19 @@ h1,h2 { text-align:center; color:#2e7d32; }
 
 /* Graph */
 #graphContainer {
-    visibility:hidden;
-    height:0;
-    margin-top:30px;
+    opacity: 0;
+    max-height: 0;
+    margin-top: 30px;
+    overflow: hidden;
     transition: all 0.3s ease;
 }
+#graphContainer.show {
+    opacity: 1;
+    max-height: 1000px; /* enough to show chart */
+}
 #monthlyChart {
-    max-width: 100%;
-    height: auto !important;
+    width: 100%;
+    height: 400px;
 }
 
 /* Credit */
@@ -289,8 +284,7 @@ function clearAll(){
     if(confirm("Are you sure you want to clear all saved data?")){
         localStorage.clear();
         document.querySelectorAll(".day").forEach(d=>d.classList.remove("saved"));
-        document.getElementById("graphContainer").style.visibility = "hidden";
-        document.getElementById("graphContainer").style.height = "0";
+        document.getElementById("graphContainer").classList.remove("show");
         clearSelections();
         document.getElementById("result").innerHTML="";
         alert("All data cleared.");
@@ -327,10 +321,9 @@ function checkMonthComplete(){
 
 function showGraph(scores){
     const graphContainer = document.getElementById("graphContainer");
-    graphContainer.style.visibility = "visible";
-    graphContainer.style.height = "auto";
+    graphContainer.classList.add("show");
 
-    const ctx=document.getElementById("monthlyChart").getContext("2d");
+    const ctx = document.getElementById("monthlyChart").getContext("2d");
 
     if(monthlyChart) monthlyChart.destroy(); // remove previous chart
 
@@ -376,7 +369,7 @@ function showGraph(scores){
         }
     });
 
-    monthlyChart.resize(); // ensure proper display on iPad
+    monthlyChart.resize();
 }
 
 // On page load
