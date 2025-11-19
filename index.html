@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Islamic Reflection Calendar - Full 15 Questions</title>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: #ffffffee;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    color: #333;
+}
+h1,h2 { text-align:center; color:#2e7d32; }
+
+/* Calendar */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.clear-btn-calendar {
+    background:#c62828;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.2s;
+}
+.clear-btn-calendar:hover { opacity:0.8; }
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+.day {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+.day:hover { background: #e0e0e0; }
+.day.saved { background: #c8e6c9; border: 2px solid #2e7d32; }
+.selected-day { background: #a5d6a7 !important; border: 3px solid #2e7d32 !important; }
+
+/* Questions */
+.question-card {
+    display: none;
+    margin-top: 20px;
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 15px;
+}
+.question {
+    margin: 15px 0;
+    font-size: 18px;
+}
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+.answer-btn {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.yes { background: #4caf50; color: white; }
+.no { background: #e53935; color: white; }
+.answer-btn.selected { outline: 4px solid #2e7d32; }
+.save-btn {
+    background: #2e7d32;
+    width: 100%;
+    padding: 15px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #2e7d32;
+    font-weight: bold;
+}
+#graphContainer { display:none; margin-top:30px; }
+
+/* Credit */
+.credit {
+    text-align:center;
+    margin-top:30px;
+    font-size:14px;
+    color:#555;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>30-Day Islamic Reflection</h1>
+
+<div class="calendar-header">
+    <h2>Select a day</h2>
+    <button class="clear-btn-calendar" onclick="clearAll()">Clear All Data</button>
+</div>
+
+<div class="calendar" id="calendar"></div>
+
+<div class="question-card" id="questionCard">
+    <h2 id="dayTitle"></h2>
+    <div id="questions"></div>
+    <button class="save-btn" onclick="saveDay()">Save Day Result</button>
+    <div id="result"></div>
+</div>
+
+<div id="graphContainer">
+    <h2>Monthly Progress</h2>
+    <canvas id="monthlyChart"></canvas>
+</div>
+
+<div class="credit">
+    &copy; 2025 Mhd Ali
+</div>
+
+<script>
+// -------------------- 15 PRIORITIZED QUESTIONS --------------------
+const questionsList = [
+    "Did you pray all 5 daily prayers?",
+    "Did you pray them on time?",
+    "Did you make any Sunnah prayers?",
+    "Did you read Qur'an today?",
+    "Did you say morning/evening adhkar?",
+    "Did you avoid major sins?",
+    "Did you avoid swearing?",
+    "Did you avoid backbiting?",
+    "Did you avoid lying?",
+    "Did you lower your gaze?",
+    "Did you control your anger?",
+    "Did you avoid wasting time on the phone?",
+    "Did you help someone today?",
+    "Did you show kindness to family?",
+    "Did you avoid arguing or hurting others?"
+];
+
+// -------------------- CALENDAR --------------------
+const calendar = document.getElementById("calendar");
+let selectedDay = null;
+for(let i=1;i<=30;i++){
+    const dayDiv=document.createElement("div");
+    dayDiv.className="day";
+    dayDiv.innerHTML=i;
+    if(localStorage.getItem("day"+i)) dayDiv.classList.add("saved");
+    dayDiv.onclick=()=>openDay(i,dayDiv);
+    calendar.appendChild(dayDiv);
+}
+
+// -------------------- QUESTIONS UI --------------------
+const qContainer=document.getElementById("questions");
+let answers=Array(questionsList.length).fill(null);
+
+questionsList.forEach((q,index)=>{
+    const div=document.createElement("div");
+    div.className="question";
+    div.innerHTML=`
+        <div>${index+1}. ${q}</div>
+        <div class="btn-group">
+            <button class="answer-btn yes" onclick="setAnswer(${index},1,this)">YES</button>
+            <button class="answer-btn no" onclick="setAnswer(${index},0,this)">NO</button>
+        </div>
+    `;
+    qContainer.appendChild(div);
+});
+
+// -------------------- DAY FUNCTIONS --------------------
+function openDay(dayNumber,element){
+    selectedDay=dayNumber;
+    document.querySelectorAll(".day").forEach(d=>d.classList.remove("selected-day"));
+    element.classList.add("selected-day");
+
+    document.getElementById("questionCard").style.display="block";
+    document.getElementById("dayTitle").innerHTML="Day "+dayNumber;
+
+    let saved = localStorage.getItem("day"+dayNumber);
+    if(saved){
+        saved=JSON.parse(saved);
+        answers=saved.answers;
+        restoreSelections();
+        document.getElementById("result").innerHTML="Previous score: "+saved.score+"%";
+    } else{
+        answers=Array(questionsList.length).fill(null);
+        clearSelections();
+        document.getElementById("result").innerHTML="";
+    }
+}
+
+function setAnswer(index,value,btn){
+    answers[index]=value;
+    const parent=btn.parentNode;
+    parent.querySelectorAll(".answer-btn").forEach(b=>b.classList.remove("selected"));
+    btn.classList.add("selected");
+}
+
+function restoreSelections(){
+    const groups=document.querySelectorAll(".btn-group");
+    answers.forEach((val,i)=>{
+        const btns=groups[i].querySelectorAll(".answer-btn");
+        btns.forEach(b=>b.classList.remove("selected"));
+        if(val===1) btns[0].classList.add("selected");
+        if(val===0) btns[1].classList.add("selected");
+    });
+}
+
+function clearSelections(){
+    document.querySelectorAll(".answer-btn").forEach(b=>b.classList.remove("selected"));
+}
+
+// -------------------- SAVE DAY --------------------
+function saveDay(){
+    if(answers.includes(null)){
+        alert("Please answer all questions.");
+        return;
+    }
+    const total=answers.reduce((a,b)=>a+b,0);
+    const score=Math.round((total/answers.length)*100);
+    localStorage.setItem("day"+selectedDay,JSON.stringify({answers,score}));
+    document.getElementById("result").innerHTML="Saved! Score: "+score+"%";
+    calendar.children[selectedDay-1].classList.add("saved");
+    checkMonthComplete();
+}
+// -------------------- TEMPORARY RANDOM FILL FOR TESTING --------------------
+function fillRandom() {
+    const excludeDay = 30; // Last day left unfilled for testing
+    for (let day = 1; day <= 30; day++) {
+        if (day === excludeDay) continue; // Skip the last day
+        const answers = questionsList.map(() => Math.random() < 0.5 ? 1 : 0);
+        const total = answers.reduce((a,b)=>a+b,0);
+        const score = Math.round((total / questionsList.length) * 100);
+        localStorage.setItem("day"+day, JSON.stringify({answers,score}));
+        calendar.children[day-1].classList.add("saved");
+    }
+    alert("Random days filled except Day "+excludeDay+" for testing.");
+    checkMonthComplete(); // check if graph needs to update
+}
+
+// -------------------- CLEAR ALL DATA --------------------
+function clearAll(){
+    if(confirm("Are you sure you want to clear all saved data?")){
+        localStorage.clear();
+        document.querySelectorAll(".day").forEach(d=>d.classList.remove("saved"));
+        document.getElementById("graphContainer").style.display="none";
+        clearSelections();
+        document.getElementById("result").innerHTML="";
+        alert("All data cleared.");
+    }
+}
+
+// -------------------- MONTHLY GRAPH --------------------
+function checkMonthComplete(){
+    let allAnswered=true;
+    const scores=[];
+    for(let i=1;i<=30;i++){
+        const dayData=localStorage.getItem("day"+i);
+        if(!dayData) allAnswered=false;
+        else scores.push(JSON.parse(dayData).score);
+    }
+    if(allAnswered) showGraph(scores);
+}
+
+function showGraph(scores){
+    document.getElementById("graphContainer").style.display="block";
+    const ctx=document.getElementById("monthlyChart").getContext("2d");
+    const colors = scores.map((score,i)=>{
+        if(i===0) return 'rgba(46,125,50,0.7)';
+        return score>=scores[i-1] ? 'rgba(46,125,50,0.7)' : 'rgba(229,57,53,0.7)';
+    });
+
+    new Chart(ctx,{
+        type:'bar',
+        data:{
+            labels:Array.from({length:30},(_,i)=>"Day "+(i+1)),
+            datasets:[{
+                label:'Daily Score %',
+                data:scores,
+                backgroundColor:colors
+            }]
+        },
+        options:{
+            responsive:true,
+            plugins:{
+                legend:{display:false},
+                tooltip:{
+                    callbacks:{
+                        label:function(context){
+                            const i=context.dataIndex;
+                            if(i===0) return "Score: "+context.parsed.y+"%";
+                            const diff=context.parsed.y-scores[i-1];
+                            const symbol=diff>=0 ? "+" : "";
+                            return `Score: ${context.parsed.y}% (${symbol}${diff} from yesterday)`;
+                        }
+                    }
+                }
+            },
+            scales:{
+                y:{
+                    beginAtZero:true,
+                    max:100,
+                    title:{display:true,text:'Score %'}
+                }
+            }
+        }
+    });
+}
+
+// Check graph on page load in case all days are already answered
+checkMonthComplete();
+</script>
+<div class="calendar-header">
+    <h2>Select a day</h2>
+    <div>
+        <button class="clear-btn-calendar" onclick="clearAll()">Clear All Data</button>
+        <button class="clear-btn-calendar" style="background:#1976d2;" onclick="fillRandom()">Random Fill</button>
+    </div>
+</div>
+
+</body>
+</html>
