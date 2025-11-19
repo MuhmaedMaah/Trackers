@@ -10,64 +10,66 @@
 <style>
 body {
     font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #2e7d32, #66bb6a);
     margin: 0;
     padding: 20px;
     color: #fff;
-    background: linear-gradient(135deg, #2e7d32, #66bb6a);
 }
-
 .container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
     background: #ffffffee;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     color: #333;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
-h1,h2 { text-align:center; color:#2e7d32; margin:0; }
+h1,h2 { text-align:center; color:#2e7d32; }
 
-/* Calendar */
+/* Calendar & Buttons */
 .calendar-header {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    gap:10px;
+    margin-bottom: 10px;
 }
-.calendar-header h2 { flex: 1; min-width:150px; }
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-.clear-btn-calendar, .random-btn {
-    padding: 10px 15px;
+.clear-btn-calendar {
+    background:#c62828;
+    color:white;
     border:none;
+    padding:10px 15px;
+    font-size:16px;
     border-radius:8px;
     cursor:pointer;
-    font-size:16px;
-    color:white;
     transition:0.2s;
 }
-.clear-btn-calendar { background:#c62828; }
-.random-btn { background:#1976d2; }
-.clear-btn-calendar:hover, .random-btn:hover { opacity:0.8; }
+.clear-btn-calendar:hover { opacity:0.8; }
+
+.random-btn-calendar {
+    background:#1976d2;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    font-size:16px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left:10px;
+    transition:0.2s;
+}
+.random-btn-calendar:hover { opacity:0.8; }
 
 .calendar {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    grid-template-columns: repeat(7, 1fr);
     gap: 10px;
+    margin-top: 10px;
 }
 .day {
     background: #f4f4f4;
     padding: 15px;
     border-radius: 12px;
     text-align: center;
-    font-size: clamp(14px,2vw,18px);
+    font-size: 18px;
     cursor: pointer;
     transition: 0.2s;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
@@ -85,21 +87,20 @@ h1,h2 { text-align:center; color:#2e7d32; margin:0; }
     border-radius: 15px;
 }
 .question {
-    margin: 10px 0;
-    font-size: clamp(14px,1.5vw,18px);
+    margin: 15px 0;
+    font-size: 18px;
 }
 .btn-group {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 5px;
+    gap: 15px;
+    margin-top: 10px;
 }
 .answer-btn {
-    flex: 1 1 45%;
-    padding: 12px;
+    flex: 1;
+    padding: 14px;
     border: none;
     border-radius: 10px;
-    font-size: clamp(14px,1.5vw,18px);
+    font-size: 18px;
     cursor: pointer;
     font-weight: bold;
 }
@@ -111,7 +112,7 @@ h1,h2 { text-align:center; color:#2e7d32; margin:0; }
     width: 100%;
     padding: 15px;
     border: none;
-    font-size: clamp(16px,2vw,20px);
+    font-size: 20px;
     color: white;
     border-radius: 10px;
     cursor: pointer;
@@ -119,25 +120,30 @@ h1,h2 { text-align:center; color:#2e7d32; margin:0; }
 }
 #result {
     text-align: center;
-    margin-top: 15px;
-    font-size: clamp(16px,2vw,24px);
+    margin-top: 20px;
+    font-size: 24px;
     color: #2e7d32;
     font-weight: bold;
 }
-#graphContainer { display:none; margin-top:20px; }
+
+/* Graph */
+#graphContainer {
+    visibility:hidden;
+    height:0;
+    margin-top:30px;
+    transition: all 0.3s ease;
+}
+#monthlyChart {
+    max-width: 100%;
+    height: auto !important;
+}
 
 /* Credit */
 .credit {
     text-align:center;
-    margin-top:20px;
+    margin-top:30px;
     font-size:14px;
     color:#555;
-}
-
-/* Responsive tweaks */
-@media(max-width:600px){
-    .calendar { grid-template-columns: repeat(auto-fit, minmax(40px, 1fr)); }
-    .answer-btn { flex: 1 1 100%; }
 }
 </style>
 </head>
@@ -148,9 +154,9 @@ h1,h2 { text-align:center; color:#2e7d32; margin:0; }
 
 <div class="calendar-header">
     <h2>Select a day</h2>
-    <div class="button-group">
+    <div>
         <button class="clear-btn-calendar" onclick="clearAll()">Clear All Data</button>
-        <button class="random-btn" onclick="fillRandom()">Random Fill</button>
+        <button class="random-btn-calendar" onclick="fillRandom()">Random Fill</button>
     </div>
 </div>
 
@@ -283,21 +289,22 @@ function clearAll(){
     if(confirm("Are you sure you want to clear all saved data?")){
         localStorage.clear();
         document.querySelectorAll(".day").forEach(d=>d.classList.remove("saved"));
-        document.getElementById("graphContainer").style.display="none";
+        document.getElementById("graphContainer").style.visibility = "hidden";
+        document.getElementById("graphContainer").style.height = "0";
         clearSelections();
         document.getElementById("result").innerHTML="";
         alert("All data cleared.");
     }
 }
 
-// -------------------- TEMPORARY RANDOM FILL --------------------
+// -------------------- RANDOM FILL TEMP --------------------
 function fillRandom() {
-    const excludeDay = 30; // Last day left unfilled for testing
-    for (let day = 1; day <= 30; day++) {
-        if (day === excludeDay) continue; // Skip last day
-        const answers = questionsList.map(() => Math.random() < 0.5 ? 1 : 0);
+    const excludeDay = 30; // last day left unfilled for testing
+    for(let day=1; day<=30; day++){
+        if(day === excludeDay) continue;
+        const answers = questionsList.map(()=>Math.random()<0.5?1:0);
         const total = answers.reduce((a,b)=>a+b,0);
-        const score = Math.round((total / questionsList.length) * 100);
+        const score = Math.round((total/questionsList.length)*100);
         localStorage.setItem("day"+day, JSON.stringify({answers,score}));
         calendar.children[day-1].classList.add("saved");
     }
@@ -306,6 +313,7 @@ function fillRandom() {
 }
 
 // -------------------- MONTHLY GRAPH --------------------
+let monthlyChart = null;
 function checkMonthComplete(){
     let allAnswered=true;
     const scores=[];
@@ -318,14 +326,20 @@ function checkMonthComplete(){
 }
 
 function showGraph(scores){
-    document.getElementById("graphContainer").style.display="block";
+    const graphContainer = document.getElementById("graphContainer");
+    graphContainer.style.visibility = "visible";
+    graphContainer.style.height = "auto";
+
     const ctx=document.getElementById("monthlyChart").getContext("2d");
+
+    if(monthlyChart) monthlyChart.destroy(); // remove previous chart
+
     const colors = scores.map((score,i)=>{
         if(i===0) return 'rgba(46,125,50,0.7)';
         return score>=scores[i-1] ? 'rgba(46,125,50,0.7)' : 'rgba(229,57,53,0.7)';
     });
 
-    new Chart(ctx,{
+    monthlyChart = new Chart(ctx,{
         type:'bar',
         data:{
             labels:Array.from({length:30},(_,i)=>"Day "+(i+1)),
@@ -337,6 +351,7 @@ function showGraph(scores){
         },
         options:{
             responsive:true,
+            maintainAspectRatio:false,
             plugins:{
                 legend:{display:false},
                 tooltip:{
@@ -360,9 +375,11 @@ function showGraph(scores){
             }
         }
     });
+
+    monthlyChart.resize(); // ensure proper display on iPad
 }
 
-// Check graph on page load in case all days are already answered
+// On page load
 checkMonthComplete();
 </script>
 
