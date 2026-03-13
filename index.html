@@ -7,156 +7,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
-body{
-font-family:Inter, sans-serif;
-background:#0b0b0f;
-color:white;
-line-height:1.6
-}
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 40px;
-position:sticky;
-top:0;
-background:rgba(10,10,15,.7);
-backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(255,255,255,0.05)
-}
-
-.logo{
-font-family:Orbitron;
-font-size:20px;
-letter-spacing:2px
-}
-
-nav ul{
-display:flex;
-list-style:none;
-gap:30px
-}
-
-nav a{
-text-decoration:none;
-color:#ccc;
-transition:.2s
-}
-
+body{font-family:Inter, sans-serif;background:#0b0b0f;color:white;line-height:1.6}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;position:sticky;top:0;background:rgba(10,10,15,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05)}
+.logo{font-family:Orbitron;font-size:20px;letter-spacing:2px}
+nav ul{display:flex;list-style:none;gap:30px}
+nav a{text-decoration:none;color:#ccc;transition:.2s}
 nav a:hover{color:white}
-
-.hero{
-height:85vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px
-}
-
-.hero h1{
-font-family:Orbitron;
-font-size:60px;
-letter-spacing:3px;
-margin-bottom:10px
-}
-
-.hero p{
-color:#aaa;
-max-width:500px;
-margin-bottom:30px
-}
-
-.btn{
-padding:14px 30px;
-border-radius:30px;
-border:1px solid #2f7bff;
-background:#2f7bff;
-color:white;
-cursor:pointer;
-transition:.2s
-}
-
-.btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px rgba(47,123,255,0.6)
-}
-
-section{
-max-width:1000px;
-margin:auto;
-padding:80px 20px
-}
-
-h2{
-font-family:Orbitron;
-text-align:center;
-margin-bottom:50px
-}
-
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px
-}
-
-.card{
-background:#12121a;
-padding:30px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.05);
-transition:.25s
-}
-
-.card:hover{
-transform:translateY(-6px);
-border-color:#2f7bff
-}
-
-.price{
-font-size:26px;
-margin:10px 0;
-color:#2f7bff
-}
-
-form{
-background:#12121a;
-padding:35px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,0.05);
-max-width:650px;
-margin:auto
-}
-
+.hero{height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
+.hero h1{font-family:Orbitron;font-size:60px;letter-spacing:3px;margin-bottom:10px}
+.hero p{color:#aaa;max-width:500px;margin-bottom:30px}
+.btn{padding:14px 30px;border-radius:30px;border:1px solid #2f7bff;background:#2f7bff;color:white;cursor:pointer;transition:.2s}
+.btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(47,123,255,0.6)}
+section{max-width:1000px;margin:auto;padding:80px 20px}
+h2{font-family:Orbitron;text-align:center;margin-bottom:50px}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
+.card{background:#12121a;padding:30px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);transition:.25s}
+.card:hover{transform:translateY(-6px);border-color:#2f7bff}
+.price{font-size:26px;margin:10px 0;color:#2f7bff}
+form{background:#12121a;padding:35px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);max-width:650px;margin:auto}
 label{font-size:14px;color:#bbb}
-
-input,textarea,select{
-width:100%;
-padding:12px;
-margin-top:6px;
-margin-bottom:16px;
-background:#0b0b10;
-border:1px solid rgba(255,255,255,0.08);
-border-radius:8px;
-color:white
-}
-
-input:focus,textarea:focus,select:focus{
-outline:none;
-border-color:#2f7bff
-}
-
-footer{
-text-align:center;
-padding:40px;
-color:#777;
-border-top:1px solid rgba(255,255,255,0.05);
-margin-top:60px
-}
-
+input,textarea,select{width:100%;padding:12px;margin-top:6px;margin-bottom:16px;background:#0b0b10;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:white}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#2f7bff}
+footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,255,255,0.05);margin-top:60px}
 </style>
 </head>
 <body>
@@ -177,77 +49,85 @@ margin-top:60px
 
 <section id="services">
 <h2>Services</h2>
-
 <div class="services">
-
 <div class="card">
 <h3>House Drone Photo</h3>
 <div class="price">80 kr</div>
 <p>Clean aerial photo of your house taken from above.</p>
 </div>
-
 <div class="card">
 <h3>Photo + Frame</h3>
 <div class="price">100 kr</div>
 <p>Drone photo plus printed framed picture.</p>
 </div>
-
 <div class="card">
 <h3>Custom Drone Filming</h3>
 <div class="price">Custom</div>
 <p>Business promotions, cinematic drone video, special shots.</p>
 </div>
-
 </div>
 </section>
 
 <section id="order">
 <h2>Place Order</h2>
 
-<form action="https://formsubmit.co/YOURGMAIL@gmail.com" method="POST">
-
-<input type="hidden" name="_subject" value="New Skyvission Drone Order">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-
+<form id="orderForm">
 <label>Name</label>
-<input name="Name" type="text" placeholder="Your name" required>
+<input name="from_name" type="text" placeholder="Your name" required>
 
 <label>Contact</label>
-<input name="Contact" type="text" placeholder="Phone / email" required>
+<input name="reply_to" type="text" placeholder="Phone / Email" required>
 
 <label>House / Business Address</label>
-<input name="Address" type="text" placeholder="Street and city" required>
+<input name="message" type="text" placeholder="Street and city" required>
 
 <label>Service</label>
-<select name="Service">
+<select name="service">
 <option>House Photo - 80 kr</option>
 <option>House Photo + Frame - 100 kr</option>
 <option>Custom Drone Filming</option>
 </select>
 
 <label>Extra Details</label>
-<textarea name="Details" placeholder="Any special requests"></textarea>
+<textarea name="details" placeholder="Any special requests"></textarea>
 
 <p style="font-size:13px;color:#aaa;margin-bottom:18px">
 After submitting the order, we will review the location and capture the drone photo. 
 Payment information will be sent later after the photo is taken and approved.
 </p>
 
-<button class="btn">Send Order</button>
-
+<button type="submit" class="btn">Send Order</button>
 </form>
 
 <p style="text-align:center;margin-top:20px;color:#888;font-size:14px">
 Once you submit your order, you will receive confirmation. 
 Payment details will be provided after the drone photo is completed.
 </p>
-
 </section>
 
 <footer>
 Skyvission • Drone Photography
 </footer>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+(function() {
+ emailjs.init("Af-WIVQfas_fPXsMu"); // Your User ID from EmailJS
+})();
+
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  emailjs.sendForm('VLfov7y7ECjG_LCuINZpd', 'template_xb5hubm', this)
+    .then(() => {
+      alert("Order sent! We'll contact you soon.");
+      this.reset();
+    }, (err) => {
+      console.error(err);
+      alert("Something went wrong. Try again.");
+    });
+});
+</script>
 
 </body>
 </html>
