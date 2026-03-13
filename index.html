@@ -2,379 +2,252 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Islamic Reflection Calendar - Full 15 Questions</title>
-
-<!-- Chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyvission</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-body {
-    font-family: "Poppins", Arial, sans-serif;
-    background: linear-gradient(135deg, #2e7d32, #66bb6a);
-    margin: 0;
-    padding: 20px;
-    color: #fff;
-}
-.container {
-    max-width: 900px;
-    margin: auto;
-    background: #ffffffee;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    color: #333;
-}
-h1,h2 { text-align:center; color:#2e7d32; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-/* Calendar & Buttons */
-.calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.clear-btn-calendar, .random-btn-calendar {
-    color:white;
-    border:none;
-    padding:10px 15px;
-    font-size:16px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:0.2s;
-    margin-left: 5px;
-}
-.clear-btn-calendar { background:#c62828; }
-.clear-btn-calendar:hover { opacity:0.8; }
-.random-btn-calendar { background:#1976d2; }
-.random-btn-calendar:hover { opacity:0.8; }
-
-.calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-}
-.day {
-    background: #f4f4f4;
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.2s;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
-}
-.day:hover { background: #e0e0e0; }
-.day.saved { background: #c8e6c9; border: 2px solid #2e7d32; }
-.selected-day { background: #a5d6a7 !important; border: 3px solid #2e7d32 !important; }
-
-/* Questions */
-.question-card {
-    display: none;
-    margin-top: 20px;
-    background: #f5f5f5;
-    padding: 20px;
-    border-radius: 15px;
-}
-.question {
-    margin: 15px 0;
-    font-size: 18px;
-}
-.btn-group {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
-}
-.answer-btn {
-    flex: 1;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    font-weight: bold;
-}
-.yes { background: #4caf50; color: white; }
-.no { background: #e53935; color: white; }
-.answer-btn.selected { outline: 4px solid #2e7d32; }
-.save-btn {
-    background: #2e7d32;
-    width: 100%;
-    padding: 15px;
-    border: none;
-    font-size: 20px;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-#result {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 24px;
-    color: #2e7d32;
-    font-weight: bold;
+body{
+font-family:Inter, sans-serif;
+background:#0b0b0f;
+color:white;
+line-height:1.6
 }
 
-/* Graph */
-#graphContainer {
-    opacity: 0;
-    max-height: 0;
-    margin-top: 30px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-#graphContainer.show {
-    opacity: 1;
-    max-height: 1000px; /* enough to show chart */
-}
-#monthlyChart {
-    width: 100%;
-    height: 400px;
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+position:sticky;
+top:0;
+background:rgba(10,10,15,.7);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,0.05)
 }
 
-/* Credit */
-.credit {
-    text-align:center;
-    margin-top:30px;
-    font-size:14px;
-    color:#555;
+.logo{
+font-family:Orbitron;
+font-size:20px;
+letter-spacing:2px
 }
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px
+}
+
+nav a{
+text-decoration:none;
+color:#ccc;
+transition:.2s
+}
+
+nav a:hover{color:white}
+
+.hero{
+height:85vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px
+}
+
+.hero h1{
+font-family:Orbitron;
+font-size:60px;
+letter-spacing:3px;
+margin-bottom:10px
+}
+
+.hero p{
+color:#aaa;
+max-width:500px;
+margin-bottom:30px
+}
+
+.btn{
+padding:14px 30px;
+border-radius:30px;
+border:1px solid #2f7bff;
+background:#2f7bff;
+color:white;
+cursor:pointer;
+transition:.2s
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px rgba(47,123,255,0.6)
+}
+
+section{
+max-width:1000px;
+margin:auto;
+padding:80px 20px
+}
+
+h2{
+font-family:Orbitron;
+text-align:center;
+margin-bottom:50px
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px
+}
+
+.card{
+background:#12121a;
+padding:30px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.05);
+transition:.25s
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:#2f7bff
+}
+
+.price{
+font-size:26px;
+margin:10px 0;
+color:#2f7bff
+}
+
+form{
+background:#12121a;
+padding:35px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.05);
+max-width:650px;
+margin:auto
+}
+
+label{font-size:14px;color:#bbb}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+margin-top:6px;
+margin-bottom:16px;
+background:#0b0b10;
+border:1px solid rgba(255,255,255,0.08);
+border-radius:8px;
+color:white
+}
+
+input:focus,textarea:focus,select:focus{
+outline:none;
+border-color:#2f7bff
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#777;
+border-top:1px solid rgba(255,255,255,0.05);
+margin-top:60px
+}
+
 </style>
 </head>
 <body>
 
-<div class="container">
-<h1>30-Day Islamic Reflection</h1>
+<nav>
+<div class="logo">SKYVISSION</div>
+<ul>
+<li><a href="#services">Services</a></li>
+<li><a href="#order">Order</a></li>
+</ul>
+</nav>
 
-<div class="calendar-header">
-    <h2>Select a day</h2>
-    <div>
-        <button class="clear-btn-calendar" onclick="clearAll()">Clear All Data</button>
-        <button class="random-btn-calendar" onclick="fillRandom()">Random Fill</button>
-    </div>
+<div class="hero">
+<h1>Skyvission</h1>
+<p>Futuristic aerial photography. We capture your house or business from the sky using drone technology.</p>
+<button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order Photo</button>
 </div>
 
-<div class="calendar" id="calendar"></div>
+<section id="services">
+<h2>Services</h2>
 
-<div class="question-card" id="questionCard">
-    <h2 id="dayTitle"></h2>
-    <div id="questions"></div>
-    <button class="save-btn" onclick="saveDay()">Save Day Result</button>
-    <div id="result"></div>
+<div class="services">
+
+<div class="card">
+<h3>House Drone Photo</h3>
+<div class="price">80 kr</div>
+<p>Clean aerial photo of your house taken from above.</p>
 </div>
 
-<div id="graphContainer">
-    <h2>Monthly Progress</h2>
-    <canvas id="monthlyChart"></canvas>
+<div class="card">
+<h3>Photo + Frame</h3>
+<div class="price">100 kr</div>
+<p>Drone photo plus printed framed picture.</p>
 </div>
 
-<div class="credit">
-    &copy; 2025 Mhd Ali
+<div class="card">
+<h3>Custom Drone Filming</h3>
+<div class="price">Custom</div>
+<p>Business promotions, cinematic drone video, special shots.</p>
 </div>
 
-<script>
-// -------------------- 15 PRIORITIZED QUESTIONS --------------------
-const questionsList = [
-    "Did you pray all 5 daily prayers?",
-    "Did you pray them on time?",
-    "Did you make any Sunnah prayers?",
-    "Did you read Qur'an today?",
-    "Did you say morning/evening adhkar?",
-    "Did you avoid major sins?",
-    "Did you avoid swearing?",
-    "Did you avoid backbiting?",
-    "Did you avoid lying?",
-    "Did you lower your gaze?",
-    "Did you control your anger?",
-    "Did you avoid wasting time on the phone?",
-    "Did you help someone today?",
-    "Did you show kindness to family?",
-    "Did you avoid arguing or hurting others?"
-];
+</div>
+</section>
 
-// -------------------- CALENDAR --------------------
-const calendar = document.getElementById("calendar");
-let selectedDay = null;
-for(let i=1;i<=30;i++){
-    const dayDiv=document.createElement("div");
-    dayDiv.className="day";
-    dayDiv.innerHTML=i;
-    if(localStorage.getItem("day"+i)) dayDiv.classList.add("saved");
-    dayDiv.onclick=()=>openDay(i,dayDiv);
-    calendar.appendChild(dayDiv);
-}
+<section id="order">
+<h2>Place Order</h2>
 
-// -------------------- QUESTIONS UI --------------------
-const qContainer=document.getElementById("questions");
-let answers=Array(questionsList.length).fill(null);
+<form action="https://formsubmit.co/YOURGMAIL@gmail.com" method="POST">
 
-questionsList.forEach((q,index)=>{
-    const div=document.createElement("div");
-    div.className="question";
-    div.innerHTML=`
-        <div>${index+1}. ${q}</div>
-        <div class="btn-group">
-            <button class="answer-btn yes" onclick="setAnswer(${index},1,this)">YES</button>
-            <button class="answer-btn no" onclick="setAnswer(${index},0,this)">NO</button>
-        </div>
-    `;
-    qContainer.appendChild(div);
-});
+<input type="hidden" name="_subject" value="New Skyvission Drone Order">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
 
-// -------------------- DAY FUNCTIONS --------------------
-function openDay(dayNumber,element){
-    selectedDay=dayNumber;
-    document.querySelectorAll(".day").forEach(d=>d.classList.remove("selected-day"));
-    element.classList.add("selected-day");
+<label>Name</label>
+<input name="Name" type="text" placeholder="Your name" required>
 
-    document.getElementById("questionCard").style.display="block";
-    document.getElementById("dayTitle").innerHTML="Day "+dayNumber;
+<label>Contact</label>
+<input name="Contact" type="text" placeholder="Phone / email" required>
 
-    let saved = localStorage.getItem("day"+dayNumber);
-    if(saved){
-        saved=JSON.parse(saved);
-        answers=saved.answers;
-        restoreSelections();
-        document.getElementById("result").innerHTML="Previous score: "+saved.score+"%";
-    } else{
-        answers=Array(questionsList.length).fill(null);
-        clearSelections();
-        document.getElementById("result").innerHTML="";
-    }
-}
+<label>House / Business Address</label>
+<input name="Address" type="text" placeholder="Street and city" required>
 
-function setAnswer(index,value,btn){
-    answers[index]=value;
-    const parent=btn.parentNode;
-    parent.querySelectorAll(".answer-btn").forEach(b=>b.classList.remove("selected"));
-    btn.classList.add("selected");
-}
+<label>Service</label>
+<select name="Service">
+<option>House Photo - 80 kr</option>
+<option>House Photo + Frame - 100 kr</option>
+<option>Custom Drone Filming</option>
+</select>
 
-function restoreSelections(){
-    const groups=document.querySelectorAll(".btn-group");
-    answers.forEach((val,i)=>{
-        const btns=groups[i].querySelectorAll(".answer-btn");
-        btns.forEach(b=>b.classList.remove("selected"));
-        if(val===1) btns[0].classList.add("selected");
-        if(val===0) btns[1].classList.add("selected");
-    });
-}
+<label>Extra Details</label>
+<textarea name="Details" placeholder="Any special requests"></textarea>
 
-function clearSelections(){
-    document.querySelectorAll(".answer-btn").forEach(b=>b.classList.remove("selected"));
-}
+<p style="font-size:13px;color:#aaa;margin-bottom:18px">
+After submitting the order, we will review the location and capture the drone photo. 
+Payment information will be sent later after the photo is taken and approved.
+</p>
 
-// -------------------- SAVE DAY --------------------
-function saveDay(){
-    if(answers.includes(null)){
-        alert("Please answer all questions.");
-        return;
-    }
-    const total=answers.reduce((a,b)=>a+b,0);
-    const score=Math.round((total/answers.length)*100);
-    localStorage.setItem("day"+selectedDay,JSON.stringify({answers,score}));
-    document.getElementById("result").innerHTML="Saved! Score: "+score+"%";
-    calendar.children[selectedDay-1].classList.add("saved");
-    checkMonthComplete();
-}
+<button class="btn">Send Order</button>
 
-// -------------------- CLEAR ALL DATA --------------------
-function clearAll(){
-    if(confirm("Are you sure you want to clear all saved data?")){
-        localStorage.clear();
-        document.querySelectorAll(".day").forEach(d=>d.classList.remove("saved"));
-        document.getElementById("graphContainer").classList.remove("show");
-        clearSelections();
-        document.getElementById("result").innerHTML="";
-        alert("All data cleared.");
-    }
-}
+</form>
 
-// -------------------- RANDOM FILL TEMP --------------------
-function fillRandom() {
-    const excludeDay = 30; // last day left unfilled for testing
-    for(let day=1; day<=30; day++){
-        if(day === excludeDay) continue;
-        const answers = questionsList.map(()=>Math.random()<0.5?1:0);
-        const total = answers.reduce((a,b)=>a+b,0);
-        const score = Math.round((total/questionsList.length)*100);
-        localStorage.setItem("day"+day, JSON.stringify({answers,score}));
-        calendar.children[day-1].classList.add("saved");
-    }
-    alert("Random days filled except Day "+excludeDay+" for testing.");
-    checkMonthComplete();
-}
+<p style="text-align:center;margin-top:20px;color:#888;font-size:14px">
+Once you submit your order, you will receive confirmation. 
+Payment details will be provided after the drone photo is completed.
+</p>
 
-// -------------------- MONTHLY GRAPH --------------------
-let monthlyChart = null;
-function checkMonthComplete(){
-    let allAnswered=true;
-    const scores=[];
-    for(let i=1;i<=30;i++){
-        const dayData=localStorage.getItem("day"+i);
-        if(!dayData) allAnswered=false;
-        else scores.push(JSON.parse(dayData).score);
-    }
-    if(allAnswered) showGraph(scores);
-}
+</section>
 
-function showGraph(scores){
-    const graphContainer = document.getElementById("graphContainer");
-    graphContainer.classList.add("show");
-
-    const ctx = document.getElementById("monthlyChart").getContext("2d");
-
-    if(monthlyChart) monthlyChart.destroy(); // remove previous chart
-
-    const colors = scores.map((score,i)=>{
-        if(i===0) return 'rgba(46,125,50,0.7)';
-        return score>=scores[i-1] ? 'rgba(46,125,50,0.7)' : 'rgba(229,57,53,0.7)';
-    });
-
-    monthlyChart = new Chart(ctx,{
-        type:'bar',
-        data:{
-            labels:Array.from({length:30},(_,i)=>"Day "+(i+1)),
-            datasets:[{
-                label:'Daily Score %',
-                data:scores,
-                backgroundColor:colors
-            }]
-        },
-        options:{
-            responsive:true,
-            maintainAspectRatio:false,
-            plugins:{
-                legend:{display:false},
-                tooltip:{
-                    callbacks:{
-                        label:function(context){
-                            const i=context.dataIndex;
-                            if(i===0) return "Score: "+context.parsed.y+"%";
-                            const diff=context.parsed.y-scores[i-1];
-                            const symbol=diff>=0 ? "+" : "";
-                            return `Score: ${context.parsed.y}% (${symbol}${diff} from yesterday)`;
-                        }
-                    }
-                }
-            },
-            scales:{
-                y:{
-                    beginAtZero:true,
-                    max:100,
-                    title:{display:true,text:'Score %'}
-                }
-            }
-        }
-    });
-
-    monthlyChart.resize();
-}
-
-// On page load
-checkMonthComplete();
-</script>
+<footer>
+Skyvission • Drone Photography
+</footer>
 
 </body>
 </html>
