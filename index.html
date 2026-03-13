@@ -42,7 +42,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 </nav>
 
 <div class="hero">
-<h1>Skyvission</h1>
+<h1>Skyvississson</h1>
 <p>Futuristic aerial photography. We capture your house or business from the sky using drone technology.</p>
 <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order Photo</button>
 </div>
@@ -84,7 +84,7 @@ footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,2
 <label>Service</label>
 <select name="service">
 <option>House Photo - 80 kr</option>
-<option>House Photo + Frame - 100 kr</option>
+<option>Photo + Frame - 100 kr</option>
 <option>Custom Drone Filming</option>
 </select>
 
@@ -112,20 +112,26 @@ Skyvission • Drone Photography
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
 (function() {
- emailjs.init("Af-WIVQfas_fPXsMu"); // Your User ID from EmailJS
+  // Initialize EmailJS with your public key (browser-safe)
+  emailjs.init("s9P7p62dSjheME_-G");
 })();
 
 document.getElementById('orderForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  
-  emailjs.sendForm('VLfov7y7ECjG_LCuINZpd', 'template_xb5hubm', this)
-    .then(() => {
-      alert("Order sent! We'll contact you soon.");
-      this.reset();
-    }, (err) => {
-      console.error(err);
-      alert("Something went wrong. Try again.");
-    });
+
+  emailjs.sendForm(
+    'VLfov7y7ECjG_LCuINZpd',  // Service ID
+    'service_dli2ewj',        // Template ID
+    this                        // Form element
+  )
+  .then(() => {
+    alert("Order sent! We'll contact you soon.");
+    this.reset();
+  })
+  .catch((err) => {
+    console.error('EmailJS error:', err);
+    alert("Something went wrong. Try again.");
+  });
 });
 </script>
 
