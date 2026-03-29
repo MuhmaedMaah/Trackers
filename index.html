@@ -2,177 +2,183 @@
 <html lang="en">
 <head>
 <link rel="icon" type="image/png" href="Facicon.png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home - Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AA Fragrances</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:Inter,sans-serif;
-      background: radial-gradient(circle at top, #0a0a0a, #050505);
-      color:white;
-      line-height:1.6;
-      overflow-x:hidden;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-    /* NAV */
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 40px;
-      position:sticky;
-      top:0;
-      background:rgba(5,5,5,.85);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.05);
-      z-index:1000;
-    }
-    .logo{
-      font-family:'Playfair Display',serif;
-      font-size:24px;
-      letter-spacing:3px;
-      color:gold;
-    }
-    nav ul{display:flex;list-style:none;gap:30px}
-    nav a{color:#aaa;text-decoration:none;transition:.3s}
-    nav a:hover{color:gold}
+body{
+  font-family:Inter,sans-serif;
+  background: radial-gradient(circle at top, #0b0b0f, #030303 70%);
+  color:white;
+  line-height:1.6;
+}
 
-    /* HERO */
-    .hero{
-      height:90vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      padding:20px;
-      animation:fadeIn 1.2s ease;
-    }
-    .hero h1{
-      font-family:'Playfair Display',serif;
-      font-size:60px;
-      color:gold;
-      letter-spacing:3px;
-    }
-    .hero p{
-      color:#bbb;
-      max-width:600px;
-      margin:15px 0 30px;
-    }
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  position:sticky;
+  top:0;
+  background:rgba(10,10,10,.7);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
 
-    .btn{
-      padding:14px 34px;
-      border-radius:30px;
-      border:1px solid gold;
-      background:transparent;
-      color:gold;
-      cursor:pointer;
-      transition:.3s;
-      font-weight:500;
-    }
-    .btn:hover{
-      background:gold;
-      color:black;
-      box-shadow:0 0 25px rgba(255,215,0,.4);
-      transform:translateY(-2px);
-    }
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  letter-spacing:3px;
+}
 
-    /* SECTIONS */
-    section{
-      max-width:1000px;
-      margin:auto;
-      padding:100px 20px;
-      animation:fadeUp 1s ease;
-    }
+.logo span:first-child{
+  color:#ffffff;
+  font-weight:600;
+}
 
-    h2{
-      font-family:'Playfair Display',serif;
-      text-align:center;
-      margin-bottom:50px;
-      color:gold;
-      letter-spacing:2px;
-    }
+.logo span:last-child{
+  color:#d4af37; /* premium gold */
+}
 
-    /* CARDS */
-    .services{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:25px;
-    }
-    .card{
-      background:linear-gradient(145deg,#0d0d0d,#050505);
-      padding:30px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.05);
-      transition:.4s;
-      text-align:center;
-      position:relative;
-    }
-    .card:hover{
-      transform:translateY(-8px);
-      border-color:gold;
-      box-shadow:0 10px 40px rgba(255,215,0,.1);
-    }
+/* HERO */
+.hero{
+  height:90vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
 
-    .price{
-      font-size:28px;
-      color:gold;
-      margin:15px 0;
-    }
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:64px;
+  letter-spacing:3px;
+}
 
-    /* FORM */
-    form{
-      background:#0d0d0d;
-      padding:35px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.05);
-      max-width:650px;
-      margin:auto;
-    }
-    label{font-size:14px;color:#bbb}
-    input,textarea,select{
-      width:100%;
-      padding:12px;
-      margin-top:6px;
-      margin-bottom:16px;
-      background:#0b0b0f;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:8px;
-      color:white;
-    }
+.hero h1 span:first-child{color:white;}
+.hero h1 span:last-child{color:#d4af37;}
 
-    /* FOOTER */
-    footer{
-      text-align:center;
-      padding:50px;
-      color:#666;
-      border-top:1px solid rgba(255,255,255,.05);
-    }
+.hero p{
+  color:#aaa;
+  max-width:600px;
+  margin:15px 0 30px;
+}
 
-    /* ANIMATIONS */
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    @keyframes fadeUp{
-      from{opacity:0;transform:translateY(40px)}
-      to{opacity:1;transform:translateY(0)}
-    }
+/* BUTTON */
+.btn{
+  padding:14px 34px;
+  border-radius:30px;
+  border:1px solid #d4af37;
+  background:transparent;
+  color:#d4af37;
+  cursor:pointer;
+  transition:.3s;
+}
 
-    @media(max-width:600px){
-      .hero h1{font-size:40px}
-    }
-  </style>
+.btn:hover{
+  background:#d4af37;
+  color:black;
+  box-shadow:0 0 30px rgba(212,175,55,.4);
+  transform:translateY(-2px);
+}
+
+/* SECTIONS */
+section{
+  max-width:1000px;
+  margin:auto;
+  padding:100px 20px;
+}
+
+h2{
+  font-family:'Playfair Display',serif;
+  text-align:center;
+  margin-bottom:50px;
+  color:#d4af37;
+  letter-spacing:2px;
+}
+
+/* CARDS */
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:rgba(255,255,255,.02);
+  padding:30px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(10px);
+  transition:.4s;
+  text-align:center;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:#d4af37;
+  box-shadow:0 15px 50px rgba(212,175,55,.15);
+}
+
+.price{
+  font-size:30px;
+  color:#d4af37;
+  margin:15px 0;
+}
+
+/* FORM */
+form{
+  background:rgba(255,255,255,.02);
+  padding:35px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.05);
+  backdrop-filter:blur(12px);
+  max-width:650px;
+  margin:auto;
+}
+
+label{font-size:14px;color:#aaa}
+
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  margin-bottom:16px;
+  background:#08080c;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;
+  color:white;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:50px;
+  color:#555;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .hero h1{font-size:42px}
+}
+</style>
 </head>
+
 <body>
+
 
 <!-- HERO -->
 <div class="hero">
-  <h1>AA Fragrances</h1>
+  <h1><span>AA</span> <span>Fragrances</span></h1>
   <p>Luxury scents. Delivered monthly. Discover your signature fragrance.</p>
   <button class="btn" onclick="document.getElementById('subscription').scrollIntoView({behavior:'smooth'})">
     Explore
@@ -180,11 +186,11 @@
 </div>
 
 <!-- ABOUT -->
-<section id="about">
+<section>
   <h2>About</h2>
-  <p style="text-align:center;color:#bbb;max-width:700px;margin:auto">
-    AA Fragrances delivers 2 premium 10ml fragrances every month. 
-    A curated experience of luxury, discovery, and simplicity.
+  <p style="text-align:center;color:#aaa;max-width:700px;margin:auto">
+    AA Fragrances delivers 2 premium 10ml fragrances every month.
+    A refined experience built on exclusivity, simplicity, and luxury.
   </p>
 </section>
 
@@ -194,15 +200,15 @@
   <div class="services">
     <div class="card">
       <h3>Premium Selection</h3>
-      <p>Exclusive scents curated monthly.</p>
+      <p>Carefully curated high-end scents.</p>
     </div>
     <div class="card">
       <h3>Perfect Size</h3>
-      <p>10ml bottles — ideal for daily use.</p>
+      <p>10ml bottles designed for everyday luxury.</p>
     </div>
     <div class="card">
       <h3>No Commitment</h3>
-      <p>Cancel anytime, no stress.</p>
+      <p>Flexible subscription. Cancel anytime.</p>
     </div>
   </div>
 </section>
