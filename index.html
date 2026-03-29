@@ -1,139 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skyvission</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter, sans-serif;background:#0b0b0f;color:white;line-height:1.6}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 40px;position:sticky;top:0;background:rgba(10,10,15,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.05)}
-.logo{font-family:Orbitron;font-size:20px;letter-spacing:2px}
-nav ul{display:flex;list-style:none;gap:30px}
-nav a{text-decoration:none;color:#ccc;transition:.2s}
-nav a:hover{color:white}
-.hero{height:85vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px}
-.hero h1{font-family:Orbitron;font-size:60px;letter-spacing:3px;margin-bottom:10px}
-.hero p{color:#aaa;max-width:500px;margin-bottom:30px}
-.btn{padding:14px 30px;border-radius:30px;border:1px solid #2f7bff;background:#2f7bff;color:white;cursor:pointer;transition:.2s}
-.btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(47,123,255,0.6)}
-section{max-width:1000px;margin:auto;padding:80px 20px}
-h2{font-family:Orbitron;text-align:center;margin-bottom:50px}
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px}
-.card{background:#12121a;padding:30px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);transition:.25s}
-.card:hover{transform:translateY(-6px);border-color:#2f7bff}
-.price{font-size:26px;margin:10px 0;color:#2f7bff}
-form{background:#12121a;padding:35px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);max-width:650px;margin:auto}
-label{font-size:14px;color:#bbb}
-input,textarea,select{width:100%;padding:12px;margin-top:6px;margin-bottom:16px;background:#0b0b10;border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:white}
-input:focus,textarea:focus,select:focus{outline:none;border-color:#2f7bff}
-footer{text-align:center;padding:40px;color:#777;border-top:1px solid rgba(255,255,255,0.05);margin-top:60px}
-</style>
+<link rel="icon" type="image/png" href="Facicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Page</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:Inter,sans-serif;
+      background: radial-gradient(circle at top, #0a0a0a, #050505);
+      color:white;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* NAV */
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 40px;
+      position:sticky;
+      top:0;
+      background:rgba(5,5,5,.85);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.05);
+      z-index:1000;
+    }
+    .logo{
+      font-family:'Playfair Display',serif;
+      font-size:24px;
+      letter-spacing:3px;
+      color:gold;
+    }
+    nav ul{display:flex;list-style:none;gap:30px}
+    nav a{color:#aaa;text-decoration:none;transition:.3s}
+    nav a:hover{color:gold}
+
+    /* HERO */
+    .hero{
+      height:90vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:20px;
+      animation:fadeIn 1.2s ease;
+    }
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:60px;
+      color:gold;
+      letter-spacing:3px;
+    }
+    .hero p{
+      color:#bbb;
+      max-width:600px;
+      margin:15px 0 30px;
+    }
+
+    .btn{
+      padding:14px 34px;
+      border-radius:30px;
+      border:1px solid gold;
+      background:transparent;
+      color:gold;
+      cursor:pointer;
+      transition:.3s;
+      font-weight:500;
+    }
+    .btn:hover{
+      background:gold;
+      color:black;
+      box-shadow:0 0 25px rgba(255,215,0,.4);
+      transform:translateY(-2px);
+    }
+
+    /* SECTIONS */
+    section{
+      max-width:1000px;
+      margin:auto;
+      padding:100px 20px;
+      animation:fadeUp 1s ease;
+    }
+
+    h2{
+      font-family:'Playfair Display',serif;
+      text-align:center;
+      margin-bottom:50px;
+      color:gold;
+      letter-spacing:2px;
+    }
+
+    /* CARDS */
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+    .card{
+      background:linear-gradient(145deg,#0d0d0d,#050505);
+      padding:30px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.05);
+      transition:.4s;
+      text-align:center;
+      position:relative;
+    }
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:gold;
+      box-shadow:0 10px 40px rgba(255,215,0,.1);
+    }
+
+    .price{
+      font-size:28px;
+      color:gold;
+      margin:15px 0;
+    }
+
+    /* FORM */
+    form{
+      background:#0d0d0d;
+      padding:35px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.05);
+      max-width:650px;
+      margin:auto;
+    }
+    label{font-size:14px;color:#bbb}
+    input,textarea,select{
+      width:100%;
+      padding:12px;
+      margin-top:6px;
+      margin-bottom:16px;
+      background:#0b0b0f;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:8px;
+      color:white;
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:50px;
+      color:#666;
+      border-top:1px solid rgba(255,255,255,.05);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(40px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    @media(max-width:600px){
+      .hero h1{font-size:40px}
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-<div class="logo">SKYVISSION</div>
-<ul>
-<li><a href="#services">Services</a></li>
-<li><a href="#order">Order</a></li>
-</ul>
-</nav>
-
+<!-- HERO -->
 <div class="hero">
-<h1>Skyvississson</h1>
-<p>Futuristic aerial photography. We capture your house or business from the sky using drone technology.</p>
-<button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Order Photo</button>
+  <h1>AA Fragrances</h1>
+  <p>Luxury scents. Delivered monthly. Discover your signature fragrance.</p>
+  <button class="btn" onclick="document.getElementById('subscription').scrollIntoView({behavior:'smooth'})">
+    Explore
+  </button>
 </div>
 
-<section id="services">
-<h2>Services</h2>
-<div class="services">
-<div class="card">
-<h3>House Drone Photo</h3>
-<div class="price">80 kr</div>
-<p>Clean aerial photo of your house taken from above.</p>
-</div>
-<div class="card">
-<h3>Photo + Frame</h3>
-<div class="price">100 kr</div>
-<p>Drone photo plus printed framed picture.</p>
-</div>
-<div class="card">
-<h3>Custom Drone Filming</h3>
-<div class="price">Custom</div>
-<p>Business promotions, cinematic drone video, special shots.</p>
-</div>
-</div>
+<!-- ABOUT -->
+<section id="about">
+  <h2>About</h2>
+  <p style="text-align:center;color:#bbb;max-width:700px;margin:auto">
+    AA Fragrances delivers 2 premium 10ml fragrances every month. 
+    A curated experience of luxury, discovery, and simplicity.
+  </p>
 </section>
 
+<!-- FEATURES -->
+<section>
+  <h2>Why Choose Us</h2>
+  <div class="services">
+    <div class="card">
+      <h3>Premium Selection</h3>
+      <p>Exclusive scents curated monthly.</p>
+    </div>
+    <div class="card">
+      <h3>Perfect Size</h3>
+      <p>10ml bottles — ideal for daily use.</p>
+    </div>
+    <div class="card">
+      <h3>No Commitment</h3>
+      <p>Cancel anytime, no stress.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIPTION -->
+<section id="subscription">
+  <h2>Subscription</h2>
+  <div class="card" style="max-width:500px;margin:auto;">
+    <h3>Monthly Plan</h3>
+    <p>2x 10ml luxury fragrances every month</p>
+    <div class="price">€29 / month</div>
+    <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+      Subscribe
+    </button>
+  </div>
+</section>
+
+<!-- ORDER -->
 <section id="order">
-<h2>Place Order</h2>
+  <h2>Order</h2>
+  <form>
+    <label>Name</label>
+    <input type="text" required>
 
-<form id="orderForm">
-<label>Name</label>
-<input name="from_name" type="text" placeholder="Your name" required>
+    <label>Email</label>
+    <input type="email" required>
 
-<label>Contact</label>
-<input name="reply_to" type="text" placeholder="Phone / Email" required>
+    <label>Address</label>
+    <input type="text" required>
 
-<label>House / Business Address</label>
-<input name="message" type="text" placeholder="Street and city" required>
-
-<label>Service</label>
-<select name="service">
-<option>House Photo - 80 kr</option>
-<option>Photo + Frame - 100 kr</option>
-<option>Custom Drone Filming</option>
-</select>
-
-<label>Extra Details</label>
-<textarea name="details" placeholder="Any special requests"></textarea>
-
-<p style="font-size:13px;color:#aaa;margin-bottom:18px">
-After submitting the order, we will review the location and capture the drone photo. 
-Payment information will be sent later after the photo is taken and approved.
-</p>
-
-<button type="submit" class="btn">Send Order</button>
-</form>
-
-<p style="text-align:center;margin-top:20px;color:#888;font-size:14px">
-Once you submit your order, you will receive confirmation. 
-Payment details will be provided after the drone photo is completed.
-</p>
+    <button class="btn">Submit</button>
+  </form>
 </section>
 
 <footer>
-Skyvission • Drone Photography
+  © 2026 AA FRAGRANCES — FOUNDED BY ALI & AHMED
 </footer>
-
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-(function() {
-  // Initialize EmailJS with your public key (browser-safe)
-  emailjs.init("s9P7p62dSjheME_-G");
-})();
-
-document.getElementById('orderForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  emailjs.sendForm(
-    'VLfov7y7ECjG_LCuINZpd',  // Service ID
-    'service_dli2ewj',        // Template ID
-    this                        // Form element
-  )
-  .then(() => {
-    alert("Order sent! We'll contact you soon.");
-    this.reset();
-  })
-  .catch((err) => {
-    console.error('EmailJS error:', err);
-    alert("Something went wrong. Try again.");
-  });
-});
-</script>
 
 </body>
 </html>
