@@ -4,7 +4,7 @@
 <link rel="icon" type="image/png" href="Facicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AA Fragrances</title>
+<title>Home - Page</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -13,42 +13,14 @@
 
 body{
   font-family:Inter,sans-serif;
-  background: radial-gradient(circle at top, #0b0b0f, #030303 70%);
+  background: radial-gradient(circle at top, #0a0a0a, #050505);
   color:white;
-  line-height:1.6;
-}
-
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 40px;
-  position:sticky;
-  top:0;
-  background:rgba(10,10,10,.7);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(255,255,255,.04);
-}
-
-.logo{
-  font-family:'Playfair Display',serif;
-  font-size:24px;
-  letter-spacing:3px;
-}
-
-.logo span:first-child{
-  color:#ffffff;
-  font-weight:600;
-}
-
-.logo span:last-child{
-  color:#d4af37; /* premium gold */
+  overflow-x:hidden;
 }
 
 /* HERO */
 .hero{
-  height:90vh;
+  height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -59,15 +31,13 @@ nav{
 
 .hero h1{
   font-family:'Playfair Display',serif;
-  font-size:64px;
+  font-size:60px;
+  color:gold;
   letter-spacing:3px;
 }
 
-.hero h1 span:first-child{color:white;}
-.hero h1 span:last-child{color:#d4af37;}
-
 .hero p{
-  color:#aaa;
+  color:#bbb;
   max-width:600px;
   margin:15px 0 30px;
 }
@@ -76,172 +46,40 @@ nav{
 .btn{
   padding:14px 34px;
   border-radius:30px;
-  border:1px solid #d4af37;
+  border:1px solid gold;
   background:transparent;
-  color:#d4af37;
+  color:gold;
   cursor:pointer;
   transition:.3s;
+  font-weight:500;
 }
 
 .btn:hover{
-  background:#d4af37;
+  background:gold;
   color:black;
-  box-shadow:0 0 30px rgba(212,175,55,.4);
+  box-shadow:0 0 25px rgba(255,215,0,.4);
   transform:translateY(-2px);
-}
-
-/* SECTIONS */
-section{
-  max-width:1000px;
-  margin:auto;
-  padding:100px 20px;
-}
-
-h2{
-  font-family:'Playfair Display',serif;
-  text-align:center;
-  margin-bottom:50px;
-  color:#d4af37;
-  letter-spacing:2px;
-}
-
-/* CARDS */
-.services{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:25px;
-}
-
-.card{
-  background:rgba(255,255,255,.02);
-  padding:30px;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.05);
-  backdrop-filter:blur(10px);
-  transition:.4s;
-  text-align:center;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  border-color:#d4af37;
-  box-shadow:0 15px 50px rgba(212,175,55,.15);
-}
-
-.price{
-  font-size:30px;
-  color:#d4af37;
-  margin:15px 0;
-}
-
-/* FORM */
-form{
-  background:rgba(255,255,255,.02);
-  padding:35px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.05);
-  backdrop-filter:blur(12px);
-  max-width:650px;
-  margin:auto;
-}
-
-label{font-size:14px;color:#aaa}
-
-input,textarea{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  margin-bottom:16px;
-  background:#08080c;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:8px;
-  color:white;
 }
 
 /* FOOTER */
 footer{
   text-align:center;
-  padding:50px;
-  color:#555;
-  border-top:1px solid rgba(255,255,255,.05);
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  .hero h1{font-size:42px}
+  padding:30px;
+  color:#666;
 }
 </style>
 </head>
 
 <body>
 
-
-<!-- HERO -->
 <div class="hero">
-  <h1><span>AA</span> <span>Fragrances</span></h1>
+  <h1>AA Fragrances</h1>
   <p>Luxury scents. Delivered monthly. Discover your signature fragrance.</p>
-  <button class="btn" onclick="document.getElementById('subscription').scrollIntoView({behavior:'smooth'})">
+
+  <button class="btn" onclick="window.location.href='ord.html'">
     Explore
   </button>
 </div>
-
-<!-- ABOUT -->
-<section>
-  <h2>About</h2>
-  <p style="text-align:center;color:#aaa;max-width:700px;margin:auto">
-    AA Fragrances delivers 2 premium 10ml fragrances every month.
-    A refined experience built on exclusivity, simplicity, and luxury.
-  </p>
-</section>
-
-<!-- FEATURES -->
-<section>
-  <h2>Why Choose Us</h2>
-  <div class="services">
-    <div class="card">
-      <h3>Premium Selection</h3>
-      <p>Carefully curated high-end scents.</p>
-    </div>
-    <div class="card">
-      <h3>Perfect Size</h3>
-      <p>10ml bottles designed for everyday luxury.</p>
-    </div>
-    <div class="card">
-      <h3>No Commitment</h3>
-      <p>Flexible subscription. Cancel anytime.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SUBSCRIPTION -->
-<section id="subscription">
-  <h2>Subscription</h2>
-  <div class="card" style="max-width:500px;margin:auto;">
-    <h3>Monthly Plan</h3>
-    <p>2x 10ml luxury fragrances every month</p>
-    <div class="price">€29 / month</div>
-    <button class="btn" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
-      Subscribe
-    </button>
-  </div>
-</section>
-
-<!-- ORDER -->
-<section id="order">
-  <h2>Order</h2>
-  <form>
-    <label>Name</label>
-    <input type="text" required>
-
-    <label>Email</label>
-    <input type="email" required>
-
-    <label>Address</label>
-    <input type="text" required>
-
-    <button class="btn">Submit</button>
-  </form>
-</section>
 
 <footer>
   © 2026 AA FRAGRANCES — FOUNDED BY ALI & AHMED

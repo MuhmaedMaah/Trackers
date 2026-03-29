@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="Facicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order - AA Fragrances</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:Inter,sans-serif;
+  background: radial-gradient(circle at top, #0a0a0a, #050505);
+  color:white;
+}
+
+/* MAIN CONTAINER */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:80px 20px;
+}
+
+/* TOP LAYOUT */
+.top{
+  display:flex;
+  gap:40px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* IMAGE PLACEHOLDER */
+.image-box{
+  flex:1;
+  height:300px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#555;
+  font-size:18px;
+  font-weight:500;
+}
+
+/* TEXT */
+.text{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.text h1{
+  font-family:'Playfair Display',serif;
+  font-size:40px;
+  color:gold;
+  margin-bottom:15px;
+}
+
+.text p{
+  color:#bbb;
+  margin-bottom:15px;
+  line-height:1.6;
+}
+
+/* BUTTON CONTAINER */
+.button-wrapper{
+  position:relative;
+  display:inline-block;
+  margin:20px auto 0;
+}
+
+/* ROTATED TAG */
+.price-tag{
+  position:absolute;
+  top:-15px;
+  right:-15px;
+  background:gold;
+  color:black;
+  font-weight:700;
+  font-size:14px;
+  padding:6px 12px;
+  transform: rotate(45deg);
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+  border-radius:4px;
+  pointer-events:none;
+}
+
+/* Buy Button tag color */
+.buy-tag{
+  background:#ff9900;
+}
+
+/* BUTTONS */
+.btn{
+  padding:16px 40px;
+  border-radius:30px;
+  border:1px solid gold;
+  background:transparent;
+  color:gold;
+  cursor:pointer;
+  transition:.3s;
+  font-size:18px;
+  font-weight:500;
+  text-align:center;
+  min-width:220px;
+  display:block;
+}
+
+.btn:hover{
+  background:gold;
+  color:black;
+  box-shadow:0 0 25px rgba(255,215,0,.4);
+}
+
+/* Buy Button style */
+.buy-btn{
+  border-color:#ff9900;
+  color:#ff9900;
+}
+
+.buy-btn:hover{
+  background:#ff9900;
+  color:black;
+  box-shadow:0 0 25px rgba(255,153,0,.4);
+}
+.big-image{
+  margin-top:80px;
+  height:350px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px;
+  color:#666;
+  margin-top:50px;
+}
+
+@media(max-width:800px){
+  .top{
+    flex-direction:column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="top">
+    
+   <div class="image-box">
+  <img src="img.png" alt="Fragrance Image" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
+</div>
+
+    <div class="text">
+      <h1>Monthly Fragrance Box</h1>
+
+      <p>
+        A premium mystery box designed for those who want to stand out.  
+        Every month, you receive two carefully selected 10ml perfumes — each with a completely unique scent.
+      </p>
+      <p>
+        Spraying 10 times a day makes the perfume last exactly one month, timed perfectly for your next delivery </p>
+      <p>
+        No repeats. No duplicates. Every delivery is a new signature fragrance inspired by iconic scents like Versace, Stronger With You, and more.
+      </p>
+      
+      <p>
+       One-time purchase of two perfumes: 200kr <br>
+       Monthly subscription: 100kr/month
+      </p>
+
+      <!-- Buttons with external rotated tags -->
+      <div class="button-wrapper">
+        <button class="btn" onclick="alert('Subscribed!');">Subscribe Now</button>
+      </div>
+
+      <div class="button-wrapper">
+        <button class="btn buy-btn" onclick="alert('One-time purchase clicked!');">Buy One-Time</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <br><br><br><br>
+</div>
+
+<footer>
+  © 2026 AA FRAGRANCES — FOUNDED BY ALI & AHMED
+</footer>
+
+</body>
+</html>
